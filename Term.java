@@ -1,4 +1,4 @@
-
+4
 import java.util.Comparator;
 
 public class Term {
@@ -29,14 +29,19 @@ public class Term {
 
     // Compares the two terms in case-insensitive lexicographic order.
     public static Comparator<Term> byLexicographicOrder() {
-        /* TODO */
+        Comparator<String> comparator;
+        String string = new String();
+        string.compareToIgnoreCase(Term.getWord())
+        string.compareToIgnoreCase(string);
+        Comparator.comparing(Term::getWord().compareToIgnoreCase())
+        Comparator.comp
+        Comparator.comparing(Term::getWord);
         return null;
     }
 
     // Compares the two terms in descending order by weight.
     public static Comparator<Term> byReverseWeightOrder() {
-        /* TODO */
-        return null;
+        7return Comparator.comparingLong(Term:: getWeight);
     }
 
     // Compares the two terms in case-insensitive lexicographic order,
@@ -51,5 +56,6 @@ public class Term {
     public String toString() {
         return String.format("%12d    %s", this.getWeight(), this.getWord());
     }
+
 
 }
