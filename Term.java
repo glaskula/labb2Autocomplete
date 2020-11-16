@@ -1,4 +1,7 @@
-4
+
+
+
+import java.nio.charset.CoderResult;
 import java.util.Comparator;
 
 public class Term {
@@ -23,33 +26,47 @@ public class Term {
 
     // Extracts a prefix from the word.
     public String getPrefix(int len) {
-        /* TODO */
-        return null;
+        return word.substring(0,len);
     }
 
     // Compares the two terms in case-insensitive lexicographic order.
     public static Comparator<Term> byLexicographicOrder() {
-        Comparator<String> comparator;
-        String string = new String();
-        string.compareToIgnoreCase(Term.getWord())
-        string.compareToIgnoreCase(string);
-        Comparator.comparing(Term::getWord().compareToIgnoreCase())
-        Comparator.comp
-        Comparator.comparing(Term::getWord);
-        return null;
+        return new byLexicographicOrder();
     }
+
+
+    public static class byLexicographicOrder implements Comparator<Term>{
+        @Override
+        public int compare(Term term1, Term term2){
+            if(term1.getWord().length()>term2.getWord().length()){
+                int length = term2.getWord().length();
+                return term1.getWord().substring(0,length).compareToIgnoreCase(term2.getWord().substring(0,length));
+            }
+            return term1.getWord().compareToIgnoreCase(term2.getWord().substring(0,term1.getWord().length())); }
+    }
+
 
     // Compares the two terms in descending order by weight.
     public static Comparator<Term> byReverseWeightOrder() {
-        7return Comparator.comparingLong(Term:: getWeight);
+        return Comparator.comparingLong(Term::getWeight);
     }
 
     // Compares the two terms in case-insensitive lexicographic order,
     // but using only the first k characters of each word.
     public static Comparator<Term> byPrefixOrder(int k) {
-        /* TODO */
-        return null;
+        byPrefixOrder.k=k;
+        return new byPrefixOrder();
     }
+    public static class byPrefixOrder implements Comparator<Term>{
+        private static int k;
+        @Override
+        public int compare(Term term1, Term term2){
+            if(term1.getWord().length()>term2.getWord().length()){
+                return term1.getPrefix(k).compareToIgnoreCase(term2.getWord());
+             }
+        return term1.getPrefix(k).compareToIgnoreCase(term2.getPrefix(k)); }
+    }
+
 
     // Returns a string representation of this term in the following format:
     // the weight, followed by whitespace, followed by the word.

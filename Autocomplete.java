@@ -1,4 +1,9 @@
 
+
+import java.nio.charset.CoderMalfunctionError;
+import java.sql.Array;
+import java.util.*;
+
 public class Autocomplete {
     private Term[] dictionary;
 
@@ -12,6 +17,13 @@ public class Autocomplete {
     // Complexity: O(N log N), where N is the number of terms
     private void sortDictionary() {
         /* TODO */
+        Comparator<Term> comparator = new Term.byLexicographicOrder();
+
+        List<Term> d=Arrays.asList(dictionary);
+        Collections.sort(d,comparator);
+        for (int i = 0; i < dictionary.length; i++){
+            dictionary[i] = d.get(i);
+        }
     }
 
     // Returns all terms that start with the given prefix, in descending order of weight.
@@ -25,7 +37,11 @@ public class Autocomplete {
     // Complexity: O(log N)
     public int numberOfMatches(String prefix) {
         /* TODO */
-        return 0;
+        Term term = new Term(prefix, 0);
+        int first = RangeBinarySearch.firstIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        int last = RangeBinarySearch.lastIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        if(last-first==0){return 0;}
+        else return last-first+1;
     }
 
 }
