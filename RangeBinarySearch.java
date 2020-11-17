@@ -12,26 +12,20 @@ public class RangeBinarySearch {
         }
         int lo = 0;
         int hi = terms.length - 1;
+        if (comparator.compare(terms[0], key) == 0) return 0;
         while (lo <= hi) {
             int search = lo + (hi - lo) / 2;
             if (comparator.compare(key,terms[search]) < 0) {
                 hi = search - 1;
             }
-            else if (comparator.compare(key,terms[search]) > 0){
+            else if (comparator.compare(key,terms[search]) > 0) {
                 lo = search + 1;
             }
-            else if (comparator.compare(key,terms[search]) == 0){
-                if (search == 0) {
-                    return search;
-                }
-                else if (comparator.compare(key,terms[search - 1]) > 0) {
-                    return search;
-                }
-                else {
-                    hi = search - 1;
-                }
+            else if (comparator.compare(terms[search - 1], terms[search]) == 0) {
+                hi = search - 1;
             }
-        }
+            else return search;
+            }
         return -1;
     }
 
@@ -44,25 +38,19 @@ public class RangeBinarySearch {
         }
         int lo = 0;
         int hi = terms.length - 1;
+        if (comparator.compare(terms[hi], key) == 0) return hi;
         while (lo <= hi) {
             int search = lo + (hi - lo) / 2;
-            if (comparator.compare(key,terms[search]) > 0){
-                lo = search + 1;
-            }
-            else if (comparator.compare(key,terms[search]) < 0) {
+            if (comparator.compare(key,terms[search]) < 0) {
                 hi = search - 1;
             }
-            else if (comparator.compare(key,terms[search]) == 0){
-                if (search == terms.length - 1) {
-                    return search;
-                }
-                else if (comparator.compare(key,terms[search + 1]) < 0) {
-                    return search;
-                }
-                else {
-                    lo = search + 1;
-                }
+            else if (comparator.compare(key,terms[search]) > 0) {
+                lo = search + 1;
             }
+            else if (comparator.compare(terms[search + 1], terms[search]) == 0) {
+                lo = search + 1;
+            }
+            else return search;
         }
         return -1;
     }

@@ -23,6 +23,7 @@ public class Autocomplete {
         Collections.sort(d,comparator);
         for (int i = 0; i < dictionary.length; i++){
             dictionary[i] = d.get(i);
+            System.out.println(dictionary[i]);
         }
     }
 
@@ -40,7 +41,7 @@ public class Autocomplete {
         Term term = new Term(prefix, 0);
         int first = RangeBinarySearch.firstIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
         int last = RangeBinarySearch.lastIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
-        if(last-first==0){return 0;}
+        if(first==-1){return -1;}
         else return last-first+1;
     }
 

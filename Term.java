@@ -26,8 +26,10 @@ public class Term {
 
     // Extracts a prefix from the word.
     public String getPrefix(int len) {
-        return word.substring(0,len);
-    }
+        if(word.length()>=len) {
+            return word.substring(0, len);
+        }
+    return word;}
 
     // Compares the two terms in case-insensitive lexicographic order.
     public static Comparator<Term> byLexicographicOrder() {
@@ -61,9 +63,9 @@ public class Term {
         private static int k;
         @Override
         public int compare(Term term1, Term term2){
-            if(term1.getWord().length()>term2.getWord().length()){
+            if(k>=term2.getWord().length()){
                 return term1.getPrefix(k).compareToIgnoreCase(term2.getWord());
-             }
+            }
         return term1.getPrefix(k).compareToIgnoreCase(term2.getPrefix(k)); }
     }
 
