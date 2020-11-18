@@ -4,10 +4,10 @@
 ** Lab 2: Autocomplete
 *******************************************************************************/
 
-Name of lab group: [...]
-Group member A:    [...]
-Group member B:    [...]
-Group member C:    [...]
+Name of lab group: Grupp 2
+Group member A:    Victor Cousin
+Group member B:    Philip Lindström Rabia
+Group member C:    Oscar Wallin
 
 
 /******************************************************************************
@@ -48,7 +48,7 @@ numberOfMatches():  [...]
 
 [..group member..]:  [..hours..]
 [..group member..]:  [..hours..]
-[..group member..]:  [..hours..]
+Oscar Wallin:  [..hours..]
 
 
 /******************************************************************************

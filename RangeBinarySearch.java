@@ -21,7 +21,7 @@ public class RangeBinarySearch {
             else if (comparator.compare(key,terms[search]) > 0) {
                 lo = search + 1;
             }
-            else if (comparator.compare(terms[search - 1], terms[search]) == 0) {
+            else if (comparator.compare(key, terms[search - 1]) == 0) {
                 hi = search - 1;
             }
             else return search;
@@ -47,7 +47,7 @@ public class RangeBinarySearch {
             else if (comparator.compare(key,terms[search]) > 0) {
                 lo = search + 1;
             }
-            else if (comparator.compare(terms[search + 1], terms[search]) == 0) {
+            else if (comparator.compare(key, terms[search + 1]) == 0) {
                 lo = search + 1;
             }
             else return search;

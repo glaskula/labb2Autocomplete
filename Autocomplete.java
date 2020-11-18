@@ -1,5 +1,6 @@
 
 
+import javax.sql.rowset.spi.SyncFactory;
 import java.nio.charset.CoderMalfunctionError;
 import java.sql.Array;
 import java.util.*;
@@ -16,33 +17,37 @@ public class Autocomplete {
     // Sorts the dictionary in *case-insensitive* lexicographic order.
     // Complexity: O(N log N), where N is the number of terms
     private void sortDictionary() {
-        /* TODO */
         Comparator<Term> comparator = new Term.byLexicographicOrder();
-
-        List<Term> d=Arrays.asList(dictionary);
-        Collections.sort(d,comparator);
-        for (int i = 0; i < dictionary.length; i++){
-            dictionary[i] = d.get(i);
-            System.out.println(dictionary[i]);
-        }
+        Arrays.sort(dictionary,comparator);
     }
 
     // Returns all terms that start with the given prefix, in descending order of weight.
     // Complexity: O(log N + M log M), where M is the number of matching terms
     public Term[] allMatches(String prefix) {
-        /* TODO */
-        return null;
+        Term term = new Term(prefix, 0);
+        int first = RangeBinarySearch.firstIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        if(first==-1){return new Term[0];}
+        int last = RangeBinarySearch.lastIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        Term[] matches = new Term[last-first+1];
+        Comparator<Term> comparator = Term.byReverseWeightOrder();
+        int c=0;
+        for(int i = first; i<=last;i++){
+            matches[c]= dictionary[i];
+            c++;
+        }
+        Arrays.sort(matches,comparator);
+
+        return matches;
     }
 
     // Returns the number of terms that start with the given prefix.
     // Complexity: O(log N)
     public int numberOfMatches(String prefix) {
-        /* TODO */
         Term term = new Term(prefix, 0);
         int first = RangeBinarySearch.firstIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        if(first==-1){return 0;}
         int last = RangeBinarySearch.lastIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
-        if(first==-1){return -1;}
-        else return last-first+1;
+        return last-first+1;
     }
 
 }
