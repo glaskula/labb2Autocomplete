@@ -14,8 +14,9 @@ Group member C:    Oscar Wallin
 ** 1. Describe how your firstIndexOf() method in RangeBinarySearch.java
 **    finds the first index of a key that equals the search key.
 ******************************************************************************/
-
-[...]
+We start by checking if the first element of the sorted array is equal to the search key, if it is then we return this index. If it isn't then we calculate the middle index of the array and compare the value of that index to the key.
+Depending on if the value is higher or lower, we change lo or hi and loop this until we find a matching value. When we find a matching value we check the previous element value and if that element isn't matching our key then we have found our first index.
+If the previous element also match our search key then we continue going backwards until we have found our first index.
 
 
 /******************************************************************************
@@ -24,19 +25,19 @@ Group member C:    Oscar Wallin
 **    as a function of the number of terms n and the number of matching terms m?
 ******************************************************************************/
 
-sortDictionary():  [...]
+sortDictionary():  [Nlog N]
 
-[..short explanation..]
+We compare the terms by lexicographic order, using compareToIgnore. Sorting with this comparator results in a complexity of O(n) * O(log(n))
+
+allMatches():  [log N + M log M]
+
+We use binary search two times and the worst-case performance is log(n). O(2*log(n)) = O(log(n)). The for loop takes M in time complexity and the arrays.sort requires M*log(M) (same as sortDictionary but with M). O(M + Mlog(M)) = O(Mlog(M)).
+We then add these together and get O(log(n) + Mlog(M)).
 
 
-allMatches():  [...]
+numberOfMatches():  [log N]
 
-[..short explanation..]
-
-
-numberOfMatches():  [...]
-
-[..short explanation..]
+We use binary search two times and the worst-case performance for our binary search is log(n). O(2*log(n)) = O(log(n)).
 
 
 
@@ -46,16 +47,16 @@ numberOfMatches():  [...]
 ** A. Approximately how many hours did you spend on the assignment?
 ******************************************************************************/
 
-[..group member..]:  [..hours..]
-[..group member..]:  [..hours..]
-Oscar Wallin:  [..hours..]
+Victor Cousin: ~8 hours.
+Philip Lindström Rabia: ~8 hours.
+Oscar Wallin: ~8 hours.
 
 
 /******************************************************************************
 ** B. Are there any known bugs / limitations?
 ******************************************************************************/
 
-[...]
+As far as we know, no.
 
 
 /******************************************************************************
@@ -65,14 +66,16 @@ Oscar Wallin:  [..hours..]
 **    may have used in creating your design.
 ******************************************************************************/
 
-[...]
-
+We did not collaborate with any other students.
+As for resources, it mainly consisted of the ones included in the course (comparator etc.) and various help from
+sites such as StackOverflow, as per usual. This was mainly used when figuring out BinarySearch and the various
+TO-DO methods in term.
 
 /******************************************************************************
 ** D. Describe any serious problems you encountered.                    
 ******************************************************************************/
 
-[...]
+No serious problems encountered.
 
 
 /******************************************************************************
@@ -81,5 +84,4 @@ Oscar Wallin:  [..hours..]
 **    from doing the assignment, and whether you enjoyed it.                                             
 ******************************************************************************/
 
-[...]
 

@@ -25,9 +25,9 @@ public class Autocomplete {
     // Complexity: O(log N + M log M), where M is the number of matching terms
     public Term[] allMatches(String prefix) {
         Term term = new Term(prefix, 0);
-        int first = RangeBinarySearch.firstIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        int first = RangeBinarySearch.firstIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length())); //log N
         if(first==-1){return new Term[0];}
-        int last = RangeBinarySearch.lastIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length()));
+        int last = RangeBinarySearch.lastIndexOf(dictionary, term, Term.byPrefixOrder(prefix.length())); // log N
         Term[] matches = new Term[last-first+1];
         Comparator<Term> comparator = Term.byReverseWeightOrder();
         int c=0;
@@ -35,7 +35,7 @@ public class Autocomplete {
             matches[c]= dictionary[i];
             c++;
         }
-        Arrays.sort(matches,comparator);
+        Arrays.sort(matches,comparator); // M log M
 
         return matches;
     }
