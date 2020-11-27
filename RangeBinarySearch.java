@@ -7,7 +7,7 @@ public class RangeBinarySearch {
     // according to the given comparator, or -1 if there are no matching elements.
     // Complexity: O(log N), where N is the length of the array
     public static int firstIndexOf(Term[] terms, Term key, Comparator<Term> comparator) {
-        if (key == null) {
+        if (key == null || terms.length==0) { // made a change, check if length = 0
             return -1;
         }
         int lo = 0;
@@ -33,7 +33,7 @@ public class RangeBinarySearch {
     // according to the given comparator, or -1 if there are no matching elements.
     // Complexity: O(log N)
     public static int lastIndexOf(Term[] terms, Term key, Comparator<Term> comparator) {
-        if (key == null) {
+        if (key == null || terms.length==0) { // made a change, check if length = 0
             return -1;
         }
         int lo = 0;
